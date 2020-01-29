@@ -1,0 +1,109 @@
+package com.ebrahim.salehi.JpaDemo1;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+	public static void connPostgres()  {
+
+		String url = "jdbc:postgresql://localhost/test";
+		String user = "postgres";
+		String password = "123";
+
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the PostgreSQL server successfully.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }        
+
+	}
+	
+	public static void connOracle()  {
+
+		String url = "jdbc:oracle:thin//172.25.40.14/dev";
+		String user = "apps";
+		String password = "appsdev";
+
+        Connection conn = null;
+        try {
+            conn = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the PostgreSQL server successfully.");
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }        
+
+	}
+
+	
+    public static void main( String[] args )
+    {
+//    	class A {    		
+//    		private int x;
+//    		private int y;
+//			public int getX() {
+//				return x;
+//			}
+//			public void setX(int x) {
+//				this.x = x;
+//			}
+//			public int getY() {
+//				return y;
+//			}
+//			public void setY(int y) {
+//				this.y = y;
+//			}    		    		    	
+//    	}
+//    	
+//    	abstract class B extends A{
+//    		private int x;
+//    		private int y;
+//			public int getX() {
+//				return x;
+//			}
+//			public void setX(int x) {
+//				this.x = x;
+//			}
+//			public int getY() {
+//				return y;
+//			}
+//			public void setY(int y) {
+//				this.y = y;
+//			}        		
+//    	}
+//    	
+//    	A a = new A();
+//    	a.setX(100);
+//    	a.setY(200);
+//    	
+//    	B b = (B) a;
+
+//    	System.out.println(b.getX()+"-"+b.getY());    	
+
+//		connOracle();
+    	
+    	Allien allien = new Allien();
+    	allien.setAid(100);
+    	allien.setSname("ebrahim");
+    	allien.setColor("blue");
+    	
+    	EntityManagerFactory emf = Persistence.createEntityManagerFactory("TestPersistence");
+    	EntityManager em = emf.createEntityManager();
+    	em.getTransaction().begin();    	
+    	
+    	em.getTransaction().commit();
+    	
+    }
+}
+
+

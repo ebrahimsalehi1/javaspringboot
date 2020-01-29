@@ -1,0 +1,83 @@
+package com.ebi.salehi.testing.TreeDataSample;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.json.JSONObject;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+	
+	private static Node<String> createTree() {
+		 Node<String> root = new Node<>("A");
+		 
+		 Node<String> node1 = root.addChild(new Node<String>("B"));
+		 
+		 Node<String> node11 = node1.addChild(new Node<String>("C"));
+		 Node<String> node111 = node11.addChild(new Node<String>("D"));
+		 Node<String> node112 = node11.addChild(new Node<String>("E"));
+		 
+		 //Node<String> node12 = node1.addChild(new Node<String>("F"));
+		 
+		 //Node<String> node2 = root.addChild(new Node<String>("G"));
+		 
+		 //Node<String> node21 = node2.addChild(new Node<String>("H"));
+		 //Node<String> node211 = node2.addChild(new Node<String>("I"));
+		 return root;
+	}
+	
+	 private static <T> void printTree(Node<T> node, String appender) {
+		 		
+		   System.out.println(appender + (node.getParent()!=null && node.getParent().getChildren().size()>1 ? ",":"")+"{title:\""+node.getData()+"\",children:[");
+		   node.getChildren().forEach(each ->  printTree(each, appender + appender));
+		   System.out.println("]}");
+
+	 }
+	 
+		private static Node<String> createTreeFromTable() {
+
+	        List<RelationalData> list = new ArrayList();
+	        list.add(new RelationalData(1, "one", 0));
+	        list.add(new RelationalData(2, "two", 1));
+	        list.add(new RelationalData(3, "three", 1));
+	        list.add(new RelationalData(4, "four", 2));
+	        list.add(new RelationalData(5, "five", 2));
+	        list.add(new RelationalData(6, "six", 3));
+	        list.add(new RelationalData(7, "seven", 4));
+	        list.add(new RelationalData(8, "eight", 5));
+	        list.add(new RelationalData(9, "nine", 5));
+	        list.add(new RelationalData(10, "ten", 5));
+	        list.add(new RelationalData(11, "eleven", 6));
+	        
+
+	        //JSONObject jsonObject = new JSONObject();
+	        list.stream().forEach((item)->{
+				 Node<String> root = new Node<>(((RelationalData)item).getTxt());
+
+	        	//System.out.println("{"+((RelationalData)item).getTxt());
+	        	list.stream().filter(item2->((RelationalData)item).getId() == ((RelationalData)item2).getParent()).
+	        	forEach(obj->{System.out.println((((RelationalData)obj).getTxt()));});
+	        	System.out.println("}");
+	        });
+			 
+	        return null;
+			 //return root;
+		}
+
+	 
+    public static void main( String[] args )
+    {
+        
+        Node<String> root = createTree();
+        printTree(root, " ");
+    	
+    	//System.out.println( System.currentTimeMillis() );        
+
+    }
+}

@@ -1,0 +1,29 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class Rt {
+	
+	public static void main(String[] args) {
+//		System.out.println("start list test");
+//		List<String> list = Arrays.asList("one","two","three");
+//		Integer i = new Integer(0);
+//		list.forEach(item->{
+//			
+//			list.add("");
+//			System.out.println(item.concat("HELLO"));
+//			
+//		});
+//		
+		Set<String> set1 = new HashSet<String>();
+		set1.add("one");
+		set1.add("two");
+		set1.add("three");
+		set1.add("four");
+		while(set1.iterator().hasNext()) {
+			System.out.println(set1.iterator().hasNext());
+		}
+	}
+
+}

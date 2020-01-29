@@ -1,0 +1,8 @@
+
+public class Rt {
+	
+	public static void main(String[] args) {
+		System.out.println("the output results");.
+	}
+
+}
